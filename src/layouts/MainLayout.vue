@@ -18,7 +18,7 @@
           flat
           icon="west"
         >
-          <div class="q-pt-xs">Back</div>
+          <div class="q-pt-xs q-pl-xs">Back</div>
         </q-btn>
 
         <q-toolbar-title>
@@ -55,6 +55,12 @@
               <q-icon color="primary" name="settings" />
             </q-item-section>
             <q-item-section>Settings</q-item-section>
+          </q-item>
+          <q-item exact clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon color="primary" name="logout" />
+            </q-item-section>
+            <q-item-section>Logout</q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>

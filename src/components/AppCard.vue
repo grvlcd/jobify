@@ -1,41 +1,47 @@
 <template>
-  <q-card class="my-card q-mb-sm" flat bordered>
-    <q-item clickable :to="`/profile/${user.id}`">
+  <q-card class="q-mb-sm" flat bordered>
+    <q-item clickable :to="`profile/${user.id}`">
       <q-item-section avatar>
         <q-avatar>
-          <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+          <img :src="user.avatar" />
         </q-avatar>
       </q-item-section>
       <q-item-section>
-        <q-item-label>{{user.name}}</q-item-label>
-        <q-item-label caption>
-          <q-rating
-            size="18px"
-            readonly
-            v-model="stars"
-            :max="5"
-            color="primary"
-          />
+        <q-item-label>{{
+          user.first_name | fullname(user.last_name)
+        }}</q-item-label>
+        <q-item-label class="text-grey-8 ellipsis-2-lines">
+          {{ user.about }}
         </q-item-label>
-      </q-item-section>
-      <q-space />
-      <q-item-section avatar class="flex flex-center">
-        <q-icon color="primary" name="navigate_next" />
       </q-item-section>
     </q-item>
     <q-separator />
-    <q-card-section horizontal>
-      <q-list>
-        <app-card-experience :experience="user.experience" />
-      </q-list>
-    </q-card-section>
+    <app-card-experience
+      :professional_background="user.professional_background"
+      :school_length="user.professional_background.educations.length"
+      :work_length="user.professional_background.work_experiences.length"
+      :about="user.about"
+      :work="user.professional_background.work_experiences[0]"
+      :education="user.professional_background.educations[0]"
+      :styles="false"
+    />
     <q-separator />
-    <q-card-section class="q-pa-xs q-px-md flex">
-      <q-icon size="sm" color="red" name="favorite_outline"></q-icon>
-      <q-space />
-      <q-icon size="sm" color="green" name="attach_money" />
-      <q-item-label class="text-h6">{{user.rate}}</q-item-label>
-    </q-card-section>
+    <q-item clickable dense>
+      <div class="q-my-auto full-width row inline justify-between">
+        <q-rating
+          readonly
+          :value="user.ratings"
+          icon="star_border"
+          icon-selected="star"
+          icon-half="star_half"
+          size="1.1rem"
+          max="5"
+        ></q-rating>
+        <q-item-label size="xl">
+          {{ user.recommendations }} Recommendations
+        </q-item-label>
+      </div>
+    </q-item>
   </q-card>
 </template>
 
@@ -49,12 +55,16 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      stars: parseInt(this.user.ratings)
-    };
+  filters: {
+    fullname(firstname, lastname) {
+      return firstname + " " + lastname;
+    }
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+#recommendations {
+  font-size: 0.9rem;
+}
+</style>
