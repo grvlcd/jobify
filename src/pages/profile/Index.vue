@@ -2,18 +2,9 @@
   <q-page class="q-pa-sm">
     <q-list>
       <q-item-section class="q-mx-auto">
-        <q-item class="column q-mx-auto">
-          <q-avatar class="q-mx-auto" size="100px">
-            <img :src="getUser.avatar" />
-          </q-avatar>
-          <q-item-label class="text-center text-h5">
-            {{ getUser.first_name | fullname(getUser.last_name) }}
-          </q-item-label>
-        </q-item>
+        <app-avatar-header :user="getUser" />
         <q-separator />
-        <div
-          class="q-mx-auto text-justify text-center q-mt-sm"
-        >
+        <div class="q-mx-auto text-justify text-center q-mt-sm">
           <q-item-label>
             {{ getUser.about }}
           </q-item-label>
@@ -32,8 +23,9 @@
 import AppTimeline from "src/components/AppTimeline.vue";
 import { mapActions, mapGetters } from "vuex";
 import AppCardExperience from "../../components/AppCardExperience.vue";
+import AppAvatarHeader from "src/components/AppAvatarHeader.vue";
 export default {
-  components: { AppCardExperience, AppTimeline },
+  components: { AppCardExperience, AppTimeline, AppAvatarHeader },
   watch: {
     "$route.params.id": {
       handler: function(id) {

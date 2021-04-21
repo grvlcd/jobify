@@ -10,7 +10,6 @@
           icon="menu"
           @click="drawer = !drawer"
         />
-
         <q-btn
           v-if="matchRoute($route.fullPath.toString())"
           v-go-back.single
@@ -20,10 +19,10 @@
         >
           <div class="q-pt-xs q-pl-xs">Back</div>
         </q-btn>
-
         <q-toolbar-title>
           {{ $route.name }}
         </q-toolbar-title>
+        <q-btn v-if="$route.name == 'Portfolio'" dense flat icon="edit">Edit</q-btn>
       </q-toolbar>
     </q-header>
 

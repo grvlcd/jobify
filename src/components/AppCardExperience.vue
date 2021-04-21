@@ -14,6 +14,7 @@
               >
                 {{ work_length - 1 }}
               </q-badge>
+              <q-tooltip> {{ work_length - 1 }} more </q-tooltip>
             </q-btn>
           </q-item-section>
         </div>
@@ -29,9 +30,12 @@
           </q-item>
         </div>
         <div class="col-11" v-else>
-          <div class="items-center">
+          <div
+            class="items-center "
+            v-if="professional_background.work_experiences"
+          >
             <div
-            class="q-ml-md q-mt-sm"
+              class="q-ml-md q-mt-sm"
               v-for="work in professional_background.work_experiences"
               :key="work.id"
             >
@@ -57,6 +61,7 @@
               >
                 {{ school_length - 1 }}
               </q-badge>
+              <q-tooltip> {{ school_length - 1 }} more </q-tooltip>
             </q-btn>
           </q-item-section>
         </div>
@@ -72,7 +77,7 @@
           </q-item>
         </div>
         <div class="col-11" v-else>
-          <div class="items-center">
+          <div class="items-center" v-if="professional_background.educations">
             <div
               v-for="education in professional_background.educations"
               :key="education.id"
@@ -114,7 +119,7 @@ export default {
       required: false
     },
     professional_background: {
-      type: [Array, Object],
+      type: [Object, Array],
       required: true
     },
     about: {

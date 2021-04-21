@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-sm">
+  <div class="q-pa-sm text-justify">
     <q-timeline color="secondary">
       <q-timeline-entry title="Job History">
         <div>
